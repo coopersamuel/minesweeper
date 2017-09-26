@@ -35,5 +35,10 @@ class Game {
         }
         /* eslint-enable */
     }
+
+    flagTile(rowIndex, columnIndex) {
+        this._board.playerBoard[rowIndex][columnIndex] = 'F';
+        this._board.print();
+    }
 }
 
