@@ -9,5 +9,7 @@ A simple minesweeper game for the console
 6. Run 'node'
 7. Run '.load game.js'
 8. Set up a game with 'let game = new Game(numRows, numColumns, numMines);'
-9. Play minesweeper - flip tiles with 'game.playMove(row,column);'
+9. Play minesweeper 
+10. Flip tiles with 'game.playMove(row,column);'
+11. Flag tiles with 'game.flagTile(row,column);'
 
