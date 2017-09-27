@@ -85,6 +85,10 @@ export class Board {
         console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
     }
 
+    setFlag(rowIndex, columnIndex) {
+        this._playerBoard[rowIndex][columnIndex] = 'F';
+    }
+
     showBombs () {
         for (let i = 0; i < this._playerBoard.length; i++) {
             for (let j = 0; j < this._playerBoard[0].length; j++) {
