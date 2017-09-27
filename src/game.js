@@ -13,9 +13,10 @@ When done run `.exit`
 */
 
 import {Board} from './board';
+const colors = require('colors');
 
 class Game {
-    constructor (numberOfRows, numberOfColumns, numberOfBombs) {
+    constructor (numberOfRows, numberOfColumns, numberOfBombs) {        
         this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
     }
 
@@ -24,10 +25,10 @@ class Game {
 
         /* eslint-disable */
         if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
-            console.log('BLAM! You found a mine. Game over.\n');
+            console.log(colors.red('BLAM! You found a mine. Game over.\n'));
             this._board.print();
         } else if (!this._board.hasSafeTiles()) {
-            console.log('Well done, you\'ve cleared all of the safe tiles. You win!\n');
+            console.log(colors.blue('Well done, you\'ve cleared all of the safe tiles. You win!\n'));
             this._board.print();
         } else {
             console.log('Current Board:');

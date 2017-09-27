@@ -1,4 +1,6 @@
 /* eslint-disable no-console, no-unused-vars */
+const colors = require('colors');
+
 export class Board {
     constructor (numberOfRows,numberOfColumns,numberOfBombs) {
         this._numberOfBombs = numberOfBombs;
@@ -49,7 +51,24 @@ export class Board {
     }
 
     print () {
-        console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
+        // Prints the board in white
+        //console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
+
+        // To print with colors, use this
+        for (let i = 0; i < this._playerBoard.length; i++) {
+            for (let j = 0; j < this._playerBoard[0].length; j++) {
+                if (this._playerBoard[i][j] === 'B') {
+                    console.log(colors.red('B'));
+                } else if (this._playerBoard[i][j] === 'F') {
+                    console.log(colors.blue('F'));
+                } else {
+                    console.log(this._playerBoard[i][j]);
+                }
+
+                console.log(' | ');
+            }
+            console.log('\n');
+        }
     }
 
     static generatePlayerBoard (numberOfRows, numberOfColumns) {
