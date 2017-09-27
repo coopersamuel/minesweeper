@@ -14,7 +14,7 @@ export class Board {
     }
 
     flipTile (rowIndex, columnIndex) {
-        if (this._playerBoard[rowIndex][columnIndex] !== ' ' && this._playerBoard[rowIndex][columnIndex] !== 'F') {
+        if (this._playerBoard[rowIndex][columnIndex] !== ' ' && this._playerBoard[rowIndex][columnIndex] !== colors.blue('F')) {
             console.log('This tile has already been flipped.');
             return;
         } else if (this._bombBoard[rowIndex][columnIndex] === 'B') {
@@ -51,24 +51,20 @@ export class Board {
     }
 
     print () {
-        // Prints the board in white
-        //console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
-
-        // To print with colors, use this
+        
+        // Adding color to the board
         for (let i = 0; i < this._playerBoard.length; i++) {
             for (let j = 0; j < this._playerBoard[0].length; j++) {
                 if (this._playerBoard[i][j] === 'B') {
-                    console.log(colors.red('B'));
+                    this._playerBoard[i][j] = colors.red('B');
                 } else if (this._playerBoard[i][j] === 'F') {
-                    console.log(colors.blue('F'));
-                } else {
-                    console.log(this._playerBoard[i][j]);
+                    this._playerBoard[i][j] = colors.blue('F');
                 }
-
-                console.log(' | ');
             }
-            console.log('\n');
         }
+
+        // Print the board
+        console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
     }
 
     static generatePlayerBoard (numberOfRows, numberOfColumns) {
