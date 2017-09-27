@@ -18,9 +18,12 @@ const colors = require('colors');
 class Game {
     constructor (numberOfRows, numberOfColumns, numberOfBombs) {        
         this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
+
+        console.log('Current Board:');
+        this._board.print();
     }
 
-    playMove (rowIndex, columnIndex) {
+    playMove(rowIndex, columnIndex) {
         this._board.flipTile(rowIndex, columnIndex);
 
         /* eslint-disable */
@@ -32,6 +35,9 @@ class Game {
             this._board.print();
         } else if (!this._board.hasSafeTiles()) {
             console.log(colors.blue('Well done, you\'ve cleared all of the safe tiles. You win!\n'));
+
+            // Shows all flags for final print
+            this._board.showFlags();
             this._board.print();
         } else {
             console.log('Current Board:');
