@@ -94,6 +94,16 @@ export class Board {
             }
         }
     }
+
+    showFlags () {
+        for (let i = 0; i < this._playerBoard.length; i++) {
+            for (let j = 0; j < this._playerBoard[0].length; j++) {
+                if (this._bombBoard[i][j] === 'B') {
+                    this._playerBoard[i][j] = 'F';
+                }
+            }
+        }
+    }
         
 
     static generatePlayerBoard (numberOfRows, numberOfColumns) {
