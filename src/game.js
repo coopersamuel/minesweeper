@@ -13,7 +13,7 @@ When done run `.exit`
 */
 
 import {Board} from './board';
-const colors = require('colors');
+const colors = require('colors'); // colors package does not support ES6 export
 
 class Game {
     constructor (numberOfRows, numberOfColumns, numberOfBombs) {        
@@ -47,7 +47,8 @@ class Game {
     }
 
     flagTile(rowIndex, columnIndex) {
-        this._board.playerBoard[rowIndex][columnIndex] = 'F';
+        this._board.setFlag(rowIndex,columnIndex);
+        console.log('Current Board:');
         this._board.print();
     }
 }
