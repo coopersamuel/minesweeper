@@ -26,6 +26,9 @@ class Game {
         /* eslint-disable */
         if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
             console.log(colors.red('BLAM! You found a mine. Game over.\n'));
+
+            // Shows the bombs for the final print
+            this._board.showBombs();
             this._board.print();
         } else if (!this._board.hasSafeTiles()) {
             console.log(colors.blue('Well done, you\'ve cleared all of the safe tiles. You win!\n'));

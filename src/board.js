@@ -19,11 +19,29 @@ export class Board {
             return;
         } else if (this._bombBoard[rowIndex][columnIndex] === 'B') {
             this._playerBoard[rowIndex][columnIndex] = 'B';
+        } else if (this.getNumberOfNeighborBombs(rowIndex,columnIndex) === 0) {
+            this._playerBoard[rowIndex][columnIndex] = this.getNumberOfNeighborBombs(rowIndex, columnIndex);
+            this.autoFlipTile(rowIndex, columnIndex);
         } else {
             this._playerBoard[rowIndex][columnIndex] = this.getNumberOfNeighborBombs(rowIndex, columnIndex);
         }
 
         this._numberOfTiles--;
+    }
+
+    autoFlipTile (rowIndex, columnIndex) {
+        const neighborOffsets = [[-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]];
+        const numberOfRows = this._bombBoard.length;
+        const numberOfColumns = this._bombBoard[0].length;
+
+        neighborOffsets.forEach(offset => {
+            const neighborRowIndex = rowIndex + offset[0];
+            const neighborColumnIndex = columnIndex + offset[1];
+            
+            if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns && this._playerBoard[neighborRowIndex][neighborColumnIndex] === ' ') {
+                this.flipTile(neighborRowIndex, neighborColumnIndex);
+            }
+        });
     }
 
     getNumberOfNeighborBombs (rowIndex, columnIndex) {
@@ -66,6 +84,17 @@ export class Board {
         // Print the board
         console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
     }
+
+    showBombs () {
+        for (let i = 0; i < this._playerBoard.length; i++) {
+            for (let j = 0; j < this._playerBoard[0].length; j++) {
+                if (this._bombBoard[i][j] === 'B') {
+                    this._playerBoard[i][j] = 'B';
+                }
+            }
+        }
+    }
+        
 
     static generatePlayerBoard (numberOfRows, numberOfColumns) {
         let board = [];
